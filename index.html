@@ -3,10 +3,331 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My Project</title>
+  <title>Wu Dynasty</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #fafaf8;
+      --surface: #ffffff;
+      --border: #e8e8e4;
+      --text-primary: #1a1a1a;
+      --text-secondary: #6b6b6b;
+      --text-muted: #a0a0a0;
+      --accent: #2c2c2c;
+      --accent-hover: #000000;
+      --tag-bg: #f0f0ec;
+    }
+
+    body {
+      font-family: 'Georgia', 'Times New Roman', serif;
+      background: var(--bg);
+      color: var(--text-primary);
+      line-height: 1.7;
+    }
+
+    /* ── Header ── */
+    header {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 0 2rem;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .header-inner {
+      max-width: 760px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+    }
+
+    .site-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      color: var(--text-primary);
+      text-decoration: none;
+    }
+
+    nav {
+      display: flex;
+      gap: 2rem;
+    }
+
+    nav a {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-size: 0.875rem;
+      color: var(--text-secondary);
+      text-decoration: none;
+      letter-spacing: 0.02em;
+      transition: color 0.15s;
+    }
+
+    nav a:hover,
+    nav a.active {
+      color: var(--text-primary);
+    }
+
+    /* ── Main ── */
+    main {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 4rem 2rem 6rem;
+    }
+
+    /* ── Hero ── */
+    .hero {
+      margin-bottom: 4rem;
+      padding-bottom: 3rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .hero-label {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-size: 0.75rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 1rem;
+    }
+
+    .hero h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      line-height: 1.2;
+      color: var(--text-primary);
+      margin-bottom: 1rem;
+    }
+
+    .hero p {
+      font-size: 1.05rem;
+      color: var(--text-secondary);
+      max-width: 520px;
+    }
+
+    /* ── Section heading ── */
+    .section-heading {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      margin-bottom: 2rem;
+    }
+
+    .section-heading h2 {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-size: 0.75rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+
+    .section-heading a {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+
+    .section-heading a:hover { color: var(--text-primary); }
+
+    /* ── Post list ── */
+    .post-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .post-item {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: baseline;
+      gap: 1rem;
+      padding: 1.25rem 0;
+      border-bottom: 1px solid var(--border);
+      text-decoration: none;
+      color: inherit;
+      transition: opacity 0.15s;
+    }
+
+    .post-item:first-child { border-top: 1px solid var(--border); }
+
+    .post-item:hover { opacity: 0.72; }
+
+    .post-meta {
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+    }
+
+    .post-title {
+      font-size: 1.05rem;
+      font-weight: 500;
+      color: var(--text-primary);
+    }
+
+    .post-desc {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+
+    .post-tags {
+      display: flex;
+      gap: 0.4rem;
+      margin-top: 0.4rem;
+    }
+
+    .tag {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-size: 0.7rem;
+      padding: 0.15rem 0.55rem;
+      border-radius: 2px;
+      background: var(--tag-bg);
+      color: var(--text-muted);
+      letter-spacing: 0.03em;
+    }
+
+    .post-date {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      white-space: nowrap;
+    }
+
+    /* ── Footer ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 2rem;
+      text-align: center;
+    }
+
+    footer p {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 600px) {
+      .hero h1 { font-size: 1.8rem; }
+      .post-item { grid-template-columns: 1fr; gap: 0.4rem; }
+      .post-date { font-size: 0.75rem; }
+    }
+  </style>
 </head>
 <body>
-  <h1>안녕하세요!</h1>
-  <p>첫 번째 HTML 파일입니다.</p>
+
+  <header>
+    <div class="header-inner">
+      <a href="/" class="site-title">Wu Dynasty</a>
+      <nav>
+        <a href="/" class="active">홈</a>
+        <a href="/blog">블로그</a>
+        <a href="/about">소개</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+    <section class="hero">
+      <p class="hero-label">Personal Blog</p>
+      <h1>Wu Dynasty</h1>
+      <p>생각을 기록하고, 경험을 나눕니다.<br>개발, 일상, 그리고 그 사이 어딘가.</p>
+    </section>
+
+    <section>
+      <div class="section-heading">
+        <h2>최근 글</h2>
+        <a href="/blog">전체 보기 →</a>
+      </div>
+
+      <ul class="post-list">
+
+        <li>
+          <a class="post-item" href="#">
+            <div class="post-meta">
+              <span class="post-title">Claude Code로 블로그 만들기</span>
+              <span class="post-desc">AI 코딩 도구를 활용해 개인 블로그를 처음부터 구축한 과정을 공유합니다.</span>
+              <div class="post-tags">
+                <span class="tag">개발</span>
+                <span class="tag">AI</span>
+              </div>
+            </div>
+            <span class="post-date">2026. 03. 31</span>
+          </a>
+        </li>
+
+        <li>
+          <a class="post-item" href="#">
+            <div class="post-meta">
+              <span class="post-title">좋은 코드를 쓴다는 것의 의미</span>
+              <span class="post-desc">읽기 쉬운 코드와 빠른 코드 사이에서, 어떤 기준으로 결정을 내려야 할까.</span>
+              <div class="post-tags">
+                <span class="tag">개발</span>
+                <span class="tag">생각</span>
+              </div>
+            </div>
+            <span class="post-date">2026. 03. 24</span>
+          </a>
+        </li>
+
+        <li>
+          <a class="post-item" href="#">
+            <div class="post-meta">
+              <span class="post-title">서울에서 봄을 보내는 방법</span>
+              <span class="post-desc">벚꽃 시즌, 한강 피크닉부터 골목 카페까지 — 봄의 서울을 즐기는 나만의 루틴.</span>
+              <div class="post-tags">
+                <span class="tag">일상</span>
+              </div>
+            </div>
+            <span class="post-date">2026. 03. 18</span>
+          </a>
+        </li>
+
+        <li>
+          <a class="post-item" href="#">
+            <div class="post-meta">
+              <span class="post-title">2026년 1분기 회고</span>
+              <span class="post-desc">목표했던 것들을 얼마나 이뤘는지, 그리고 2분기에는 무엇에 집중할지 정리했습니다.</span>
+              <div class="post-tags">
+                <span class="tag">회고</span>
+              </div>
+            </div>
+            <span class="post-date">2026. 03. 10</span>
+          </a>
+        </li>
+
+        <li>
+          <a class="post-item" href="#">
+            <div class="post-meta">
+              <span class="post-title">TypeScript를 더 잘 쓰는 5가지 습관</span>
+              <span class="post-desc">타입 안전성을 높이면서도 코드가 간결해지는 실용적인 패턴들을 소개합니다.</span>
+              <div class="post-tags">
+                <span class="tag">개발</span>
+                <span class="tag">TypeScript</span>
+              </div>
+            </div>
+            <span class="post-date">2026. 02. 28</span>
+          </a>
+        </li>
+
+      </ul>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>© 2026 Wu Dynasty. All rights reserved.</p>
+  </footer>
+
 </body>
 </html>

@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(iconv -f UTF-8 -t UTF-8)",
+      "Bash(powershell.exe -Command \":*)"
+    ]
+  }
+}
