@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Earth Explorer Mobile Fixed</title>
+<style>
+body { margin:0; font-family:sans-serif; background:#020712; color:#fff; }
+
+.hud {
+  position:absolute; top:20px; left:20px; right:20px;
+  background:rgba(10,16,28,.8);
+  padding:16px; border-radius:16px;
+}
+
+.hud-header { cursor:pointer; }
+
+.panel-body,
+.bottom-content {
+  transition: max-height .25s ease, opacity .2s ease, margin .2s ease;
+  overflow: hidden;
+}
+
+body.panel-collapsed .panel-body,
+body.panel-collapsed .bottom-content {
+  max-height: 0 !important;
+  opacity: 0;
+  margin-top: 0 !important;
+}
+
+body:not(.panel-collapsed) .panel-body {
+  max-height: 500px;
+}
+
+body:not(.panel-collapsed) .bottom-content {
+  max-height: 120px;
+}
+
+.bottom {
+  position:absolute; bottom:20px; left:20px; right:20px;
+  background:rgba(10,16,28,.7);
+  padding:12px; border-radius:12px;
+}
+</style>
+</head>
+<body class="panel-collapsed">
+
+<div class="hud">
+  <div class="hud-header" id="hudHeader">
+    <h2>Earth Explorer Stable</h2>
+    <div>안정화된 3D 지구본 (클릭해서 펼치기)</div>
+  </div>
+
+  <div class="panel-body">
+    <p>국가명 검색, 설명 영역</p>
+    <input placeholder="국가명 검색">
+  </div>
+</div>
+
+<div class="bottom">
+  <div class="bottom-content">
+    조작: 드래그 회전 · 핀치 확대
+  </div>
+</div>
+
+<script>
+const hudHeader = document.getElementById('hudHeader');
+
+hudHeader.addEventListener('click', () => {
+  document.body.classList.toggle('panel-collapsed');
+});
+</script>
+
+</body>
+</html>
